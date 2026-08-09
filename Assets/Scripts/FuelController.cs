@@ -8,6 +8,7 @@ public class FuelController : MonoBehaviour
     [SerializeField] private Image fuelFrontImage;
     [SerializeField] private float drainSpeed = 5f;
     [SerializeField] private float maxFuelAmount = 100f;
+    [SerializeField] private Gradient fuelGradient;
 
     private float currentFuelAmount;
 
@@ -30,9 +31,12 @@ public class FuelController : MonoBehaviour
     }
 
     private void UpdateFuelUI()
-    {
-        fuelFrontImage.fillAmount = currentFuelAmount / maxFuelAmount;
-    }
+{
+    float fuelPercent = currentFuelAmount / maxFuelAmount;
+
+    fuelFrontImage.fillAmount = fuelPercent;
+    fuelFrontImage.color = fuelGradient.Evaluate(fuelPercent);
+}
 
     private void Update()
     {
