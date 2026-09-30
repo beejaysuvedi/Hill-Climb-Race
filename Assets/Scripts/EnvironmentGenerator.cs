@@ -147,4 +147,4 @@ public class EnvironmentGenerator : MonoBehaviour
         spriteShapeController.BakeMesh().Complete();
         spriteShapeController.BakeCollider();
     }
-}
+} 
