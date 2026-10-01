@@ -6,22 +6,17 @@ public class StartGameManager : MonoBehaviour
 
     private bool gameStarted = false;
 
-    void Start()
+    private void Start()
     {
         Time.timeScale = 0f;
         startCanvas.SetActive(true);
     }
 
-    void Update()
+    public void StartGame()
     {
-        if (!gameStarted && Input.GetKeyDown(KeyCode.Space))
-        {
-            StartGame();
-        }
-    }
+        if (gameStarted)
+            return;
 
-    void StartGame()
-    {
         gameStarted = true;
 
         startCanvas.SetActive(false);
