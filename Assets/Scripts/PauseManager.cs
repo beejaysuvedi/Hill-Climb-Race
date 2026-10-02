@@ -4,7 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    [Header("Pause UI")]
     public GameObject pausePanel;
+    public GameObject pauseButton;
+
+    [Header("Optional Pause Button Text")]
     public TMP_Text pauseButtonText;
 
     private bool isPaused = false;
@@ -29,6 +33,9 @@ public class PauseManager : MonoBehaviour
         if (pausePanel != null)
             pausePanel.SetActive(true);
 
+        if (pauseButton != null)
+            pauseButton.SetActive(false);
+
         if (pauseButtonText != null)
             pauseButtonText.text = "▶";
     }
@@ -40,6 +47,9 @@ public class PauseManager : MonoBehaviour
 
         if (pausePanel != null)
             pausePanel.SetActive(false);
+
+        if (pauseButton != null)
+            pauseButton.SetActive(true);
 
         if (pauseButtonText != null)
             pauseButtonText.text = "⏸";
@@ -54,10 +64,15 @@ public class PauseManager : MonoBehaviour
         );
     }
 
-    public void MainMenu()
+    public void ExitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     private void OnDestroy()
